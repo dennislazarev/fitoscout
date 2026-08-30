@@ -1,0 +1,20 @@
+[Unit]
+Description=Fitoscout API Server
+After=network.target mariadb.service
+Wants=mariadb.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/volume1/Fitoscout_project
+ExecStart=/volume1/Fitoscout_project/bin/fitoscoutd /volume1/Fitoscout_project/config/config.toml
+Restart=always
+RestartSec=5
+StandardOutput=append:/volume1/Fitoscout_project/logs/fitoscout.log
+StandardError=append:/volume1/Fitoscout_project/logs/fitoscout.log
+TimeoutStopSec=30
+KillMode=mixed
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
