@@ -433,11 +433,12 @@ Body: multipart/form-data
 ← Возвращает запись библиотеки
 ```
 
-### 6.6. Streaming (для чтения книг на Android)
-```
-GET /api/v1/library/{id}/stream [android, web]
-→ HTTP Range requests для PDF/DJVU
-```
+### 6.6. Streaming для библиотеки (ОТЛОЖЕНО)
+> ⚠️ **Функционал отложен до после-MVP.** См. TODO-лист проекта.
+> 
+> **Приоритет:** Низкий
+> **Форматы:** PDF, DJVU, MP4, MKV
+> **Зависимости:** Задача #5 (базовый CRUD библиотеки)
 
 ## 7. Правила именования
 
@@ -505,7 +506,7 @@ logger.Error("ошибка подключения к БД",
 | 7 | Статьи | `articles_` | обычный | Markdown + `[module:id]`, `[image:id]` |
 | 8 | Реестр питомника | `registry_` | замкнутый | уникальные артикулы, `is_lost` |
 | 9 | Календарь | `calendar_` | замкнутый | напоминания, повторения |
-| 10 | Библиотека | `library_` | замкнутый | PDF/DJVU/MP4, streaming |
+| 10 | Библиотека | `library_` | замкнутый | PDF/DJVU/MP4, streaming (отложен) |
 | 11 | Комментарии | `comments_` | замкнутый | типы: comment/general/task |
 
 ## 10. Роли и права доступа
