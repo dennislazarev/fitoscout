@@ -3,6 +3,7 @@
 package errors
 
 import (
+		"database/sql"
         stderrors "errors"
         "fmt"
 		"net/http"
@@ -175,13 +176,17 @@ func AsAppError(err error) (*AppError, bool) {
 }
 
 // FromError гарантирует AppError: доменная ошибка возвращается как есть,
-// любая другая оборачивается в CodeInternal.
+// sql.ErrNoRows преобразуется в NotFound, любая другая оборачивается в CodeInternal.
 func FromError(err error) *AppError {
-        if err == nil {
-                return Internal()
-        }
-        if appErr, ok := AsAppError(err); ok {
-                return appErr
-        }
-        return &AppError{Code: CodeInternal, Message: "внутренняя ошибка сервера", Wrapped: err}
+	if err == nil {
+		return Internal()
+	}
+	// sql.ErrNoRows → NotFound (404)
+	if stderrors.Is(err, sql.ErrNoRows) {
+		return NotFound("запись не найдена")
+	}
+	if appErr, ok := AsAppError(err); ok {
+		return appErr
+	}
+	return &AppError{Code: CodeInternal, Message: "внутренняя ошибка сервера", Wrapped: err}
 }
