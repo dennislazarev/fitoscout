@@ -69,10 +69,10 @@ func F(key string, value any) Field {
 
 // Logger — потокобезопасный логгер с ротацией файлов.
 type Logger struct {
-	mu          sync.Mutex
-	out         io.Writer
-	level       Level
-	requestID   string
+	mu        sync.Mutex
+	out       io.Writer
+	level     Level
+	requestID string
 }
 
 // Config — конфигурация логгера.

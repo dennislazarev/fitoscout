@@ -30,7 +30,7 @@ func extractID(r *http.Request, module string) string {
 	}
 
 	parts := strings.Split(path, "/")
-	
+
 	// Ищем сегмент с именем модуля (учитываем единственное и множественное число: "library" или "libraries")
 	// Например: для пути "api/v1/library/lib-1/stream" мы найдем "library" на индексе 2
 	for i := 0; i < len(parts); i++ {
@@ -43,8 +43,8 @@ func extractID(r *http.Request, module string) string {
 		}
 	}
 
-	// Fallback: Если название модуля не найдено в пути (например, префикс был удален 
-	// через http.StripPrefix или в тесте передан путь сразу с ID типа "/lib-1/stream"), 
+	// Fallback: Если название модуля не найдено в пути (например, префикс был удален
+	// через http.StripPrefix или в тесте передан путь сразу с ID типа "/lib-1/stream"),
 	// предполагаем, что путь начинается сразу с ID. Берем первый сегмент.
 	return parts[0]
 }

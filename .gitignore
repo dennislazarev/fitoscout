@@ -1,0 +1,25 @@
+```
+# Compiled and build artifacts
+*.o
+*.obj
+*.out
+
+# Dependencies
+vendor/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Coverage reports
+coverage.txt
+test_results.txt
+
+# Binary executables
+**/fitoscoutd_test
+
+# Environment
+.env
+.env.local
+.env.*
+```

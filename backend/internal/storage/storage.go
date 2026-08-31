@@ -18,7 +18,7 @@ const (
 
 // DB — обёртка над пулом подключений MariaDB.
 type DB struct {
-	db     *sql.DB        // ← возвращаем обычный sql.DB
+	db     *sql.DB // ← возвращаем обычный sql.DB
 	cfg    Config
 	logger *logging.Logger
 }
